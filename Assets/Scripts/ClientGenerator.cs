@@ -1,18 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ClientGenerator : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class ClientGenerator : Interactable {
+
+    public Client client;
+
+    public void GenerateClient () {
+        client = Resources.Load ("ScriptableObjects/Client") as Client;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
