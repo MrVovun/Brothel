@@ -25,7 +25,9 @@ public class ClientHolder : MonoBehaviour {
         clientClone = Instantiate (defaultClient, transform.position, transform.rotation);
         clientClone.GetComponent<ClientGenerator> ().GenerateClient ();
     }
+
     public void MoveClient (Vector3 point) {
         clientClone.GetComponent<CharacterMover> ().MoveToPoint (point);
     }
+
 }
