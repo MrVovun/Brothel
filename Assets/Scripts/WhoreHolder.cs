@@ -16,20 +16,35 @@ public class WhoreHolder : MonoBehaviour {
         instance = this;
     }
     #endregion
-
-    public List<Whore> listOfWhores = new List<Whore> ();
-
+    [SerializeField]
+    GameObject whereToSpawnButtons;
+    [SerializeField]
+    GameObject buttonPrefab;
+    public List<GameObject> listOfWhores = new List<GameObject> ();
     private void Start () {
-        foreach (GameObject whoreObj in GameObject.FindGameObjectsWithTag ("Whore")) {
+        listOfWhores.AddRange (GameObject.FindGameObjectsWithTag ("Whore"));
+    }
 
-            listOfWhores.Add (whoreObj.GetComponent<WhoreGenerator> ().whore);
+    public void SurroundClient (ClientGenerator clientToSurround) {
+        StartCoroutine (MeetTheClient (clientToSurround));
+    }
+    IEnumerator MeetTheClient (ClientGenerator clientToSurround) {
+        foreach (GameObject whore in listOfWhores) {
+            WhoreGenerator whoreGen = whore.GetComponent<WhoreGenerator> ();
+            if (whoreGen.isOccupied == false) {
+                whore.GetComponent<CharacterMover> ().MoveToTarget (clientToSurround);
+                if (whoreGen.thisWhoreButton == null) {
+                    GameObject buttonToSpawn = Instantiate (buttonPrefab, transform.position, transform.rotation);
+                    buttonToSpawn.transform.SetParent (whereToSpawnButtons.transform);
+                    buttonToSpawn.GetComponent<WhoreUIButton> ().AssignWhore (whore);
+                    yield return null;
+                } else if (whoreGen.thisWhoreButton != null) {
+                    whoreGen.thisWhoreButton.SetActive (true);
+                    yield return null;
+                }
+                yield return null;
+            }
         }
-    }
 
-    public void AddWhore (Whore incomingWhore) {
-        listOfWhores.Add (incomingWhore);
-    }
-    public void RemoveWhore (Whore incomingWhore) {
-        listOfWhores.Remove (incomingWhore);
     }
 }

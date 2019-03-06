@@ -18,17 +18,9 @@ public class GameController : MonoBehaviour {
     #endregion
 
     Camera cam;
-    Vector3 clientDestination;
-    public GameObject[] whoresOnTheField;
-    [SerializeField]
-    GameObject whereToSpawnButtons;
-    [SerializeField]
-    GameObject buttonPrefab;
 
     void Start () {
         cam = Camera.main;
-        UpdateClientDestination ();
-        GatherTheWhores ();
     }
 
     void Update () {
@@ -38,17 +30,8 @@ public class GameController : MonoBehaviour {
         if (Input.GetKeyDown (KeyCode.Space)) {
             SpawnClient ();
         }
-        if (Input.GetKeyDown (KeyCode.E)) {
-            MoveClientToPoint ();
-        }
-        if (Input.GetKeyDown (KeyCode.A)) {
-            AddWhore ();
-        }
         if (Input.GetKeyDown (KeyCode.C)) {
             CompareClient ();
-        }
-        if (Input.GetKeyDown (KeyCode.F)) {
-            SpawnButton ();
         }
     }
 
@@ -66,32 +49,14 @@ public class GameController : MonoBehaviour {
     void SpawnClient () {
         ClientHolder.instance.Spawn ();
     }
-    void MoveClientToPoint () {
-        ClientHolder.instance.MoveClient (clientDestination);
-    }
     public List<Whore> CompareClient () {
         int clientNum = ClientHolder.instance.clientClone.GetComponent<ClientGenerator> ().client.fitsToWhore;
         List<Whore> fittingWhores = new List<Whore> ();
         for (int i = 0; i < WhoreHolder.instance.listOfWhores.Count; i++) {
-            if (clientNum == WhoreHolder.instance.listOfWhores[i].fitsToClient) {
-                fittingWhores.Add (WhoreHolder.instance.listOfWhores[i]);
+            if (clientNum == WhoreHolder.instance.listOfWhores[i].GetComponent<WhoreGenerator> ().whore.fitsToClient) {
+                fittingWhores.Add (WhoreHolder.instance.listOfWhores[i].GetComponent<WhoreGenerator> ().whore);
             }
         }
         return fittingWhores;
-    }
-    void AddWhore () {
-        //WhoreHolder.instance.AddWhore (123);
-    }
-    public void UpdateClientDestination () {
-        clientDestination = GameObject.FindGameObjectWithTag ("DestinationPoint").transform.position;
-    }
-
-    public void GatherTheWhores () {
-        whoresOnTheField = GameObject.FindGameObjectsWithTag ("Whore");
-    }
-
-    void SpawnButton () {
-        GameObject buttonToSpawn = Instantiate (buttonPrefab, transform.position, transform.rotation);
-        buttonToSpawn.transform.SetParent (whereToSpawnButtons.transform);
     }
 }
