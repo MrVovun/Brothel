@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WhoreHolder : MonoBehaviour {
 
@@ -20,7 +22,10 @@ public class WhoreHolder : MonoBehaviour {
     GameObject whereToSpawnButtons;
     [SerializeField]
     GameObject buttonPrefab;
+
     public List<GameObject> listOfWhores = new List<GameObject> ();
+    public TextMeshProUGUI whoreInfoHolder;
+
     private void Start () {
         listOfWhores.AddRange (GameObject.FindGameObjectsWithTag ("Whore"));
     }

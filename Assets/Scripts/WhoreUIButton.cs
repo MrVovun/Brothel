@@ -6,12 +6,19 @@ using UnityEngine.UI;
 
 public class WhoreUIButton : MonoBehaviour {
 
+    private TextMeshProUGUI whoreInfo;
+    private WhoreGenerator whoreGen;
+
+    private void Awake () {
+        GetComponent<Button> ().onClick.AddListener (ShowWhoreInfo);
+    }
+
     public void FitsToClient () {
         GetComponentInChildren<TextMeshProUGUI> ().text = GetComponentInChildren<TextMeshProUGUI> ().text + "\nFits!";
     }
 
     public void AssignWhore (GameObject whorePrefab) {
-        WhoreGenerator whoreGen = whorePrefab.GetComponent<WhoreGenerator> ();
+        whoreGen = whorePrefab.GetComponent<WhoreGenerator> ();
         whoreGen.thisWhoreButton = gameObject;
         GetComponent<Image> ().sprite = whoreGen.whore.whorePortrait;
         GetComponentInChildren<TextMeshProUGUI> ().text = whoreGen.whore.whoreName;
@@ -20,6 +27,10 @@ public class WhoreUIButton : MonoBehaviour {
         }
     }
 
+    public void ShowWhoreInfo () {
+        whoreInfo = WhoreHolder.instance.whoreInfoHolder;
+        whoreInfo.text = "Name: " + whoreGen.whore.whoreName + "\n" + "Description: " + whoreGen.whore.whoreDesc + "\n" + "Fits to client: " + whoreGen.whore.fitsToClient;
+    }
     public void MoveClientToRoom () {
         //get whore assigned to this buttongg
         //get current client
