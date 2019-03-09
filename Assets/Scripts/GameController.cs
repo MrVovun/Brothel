@@ -18,9 +18,11 @@ public class GameController : MonoBehaviour {
     #endregion
 
     Camera cam;
+    public GameObject confirmCancelButtons;
 
     void Start () {
         cam = Camera.main;
+        confirmCancelButtons.SetActive (false);
     }
 
     void Update () {
@@ -58,5 +60,12 @@ public class GameController : MonoBehaviour {
             }
         }
         return fittingWhores;
+    }
+
+    public void CancelButton () {
+
+    }
+    public void ConfirmButton () {
+
     }
 }
