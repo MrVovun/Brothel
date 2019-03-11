@@ -22,6 +22,7 @@ public class WhoreHolder : MonoBehaviour {
     GameObject whereToSpawnButtons;
     [SerializeField]
     GameObject buttonPrefab;
+    public WhoreGenerator activeWhore;
 
     public List<GameObject> listOfWhores = new List<GameObject> ();
     public TextMeshProUGUI whoreInfoHolder;

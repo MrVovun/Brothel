@@ -4,10 +4,12 @@ using UnityEngine;
 public class ClientGenerator : Interactable {
 
     public Client client;
+    public int staminaRequired;
 
     private void Start () {
         if (BrothelEntranceController.instance.isOccupied == false) {
             GetComponent<CharacterMover> ().MoveToPoint (BrothelEntranceController.instance.transform.position);
+            GameController.instance.CompareClient ();
         } else {
             //wait until isOccupied == false
         }

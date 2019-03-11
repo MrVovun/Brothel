@@ -32,9 +32,6 @@ public class GameController : MonoBehaviour {
         if (Input.GetKeyDown (KeyCode.Space)) {
             SpawnClient ();
         }
-        if (Input.GetKeyDown (KeyCode.C)) {
-            CompareClient ();
-        }
     }
 
     void Interact () {
@@ -63,9 +60,11 @@ public class GameController : MonoBehaviour {
     }
 
     public void CancelButton () {
-
+        confirmCancelButtons.SetActive (false);
+        WhoreHolder.instance.whoreInfoHolder.text = null;
+        WhoreHolder.instance.activeWhore = null;
     }
     public void ConfirmButton () {
-
+        WhoreHolder.instance.activeWhore.MoveClientToRoom (ClientHolder.instance.clientClone);
     }
 }

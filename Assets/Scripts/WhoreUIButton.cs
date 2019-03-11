@@ -29,15 +29,9 @@ public class WhoreUIButton : MonoBehaviour {
 
     public void ShowWhoreInfo () {
         whoreInfo = WhoreHolder.instance.whoreInfoHolder;
+        WhoreHolder.instance.activeWhore = whoreGen;
         whoreInfo.text = "Name: " + whoreGen.whore.whoreName + "\n" + "Description: " + whoreGen.whore.whoreDesc + "\n" + "Fits to client: " + whoreGen.whore.fitsToClient;
         GameController.instance.confirmCancelButtons.SetActive (true);
     }
-    public void MoveClientToRoom () {
-        //get whore assigned to this buttongg
-        //get current client
-        //unassign client from clientholder, make queue -1
-        //make client follow whore
-        //make whore move to room
 
-    }
 }

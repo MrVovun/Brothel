@@ -4,7 +4,7 @@ public class WhoreGenerator : Interactable {
     public Whore whore;
     public GameObject thisWhoreButton;
     public bool isOccupied = false;
-    public GameObject MyClient;
+    public int stamina = 100;
 
     public void MoveWhoreToClient () {
         GetComponent<CharacterMover> ().MoveToTarget (ClientHolder.instance.clientClone.GetComponent<ClientGenerator> ());
@@ -14,11 +14,13 @@ public class WhoreGenerator : Interactable {
         GetComponent<CharacterMover> ().MoveToPoint (point);
     }
 
-    public void GiveInfoToTheRoom () {
-        //get client and some data from him
-        //give it to room with stamina needed to reduce
-        //disable whore and client and start coroutine, time is gathered from whore and calculated depending on stats
-        //after coroutine end spawn both of them again
-        //whore goes to default position, client goes to cashbox, then leaves
+    public void MoveClientToRoom (GameObject client) {
+        GetComponent<CharacterMover> ().MoveToPoint (RoomBehaviour.instance.entrance.transform.position);
+        client.GetComponent<CharacterMover> ().FollowTarget (this);
+        ClientHolder.instance.clientClone = null;
+        //make queue in clientholder -1
+        //start coroutine for moving to the room entrance
+        RoomBehaviour.instance.SomeoneEnteredTheRoom (gameObject, client);
+
     }
 }
