@@ -6,11 +6,14 @@ using UnityEngine.UI;
 
 public class WhoreUIButton : MonoBehaviour {
 
-    private TextMeshProUGUI whoreInfo;
     private WhoreGenerator whoreGen;
+    private string thisWhoreInfo;
+    private bool isGenericInfo = false;
 
     private void Awake () {
-        GetComponent<Button> ().onClick.AddListener (ShowWhoreInfo);
+        GetComponent<Button> ().onClick.AddListener (delegate {
+            GameController.instance.ShowInfo (thisWhoreInfo, isGenericInfo);
+        });
     }
 
     public void FitsToClient () {
@@ -25,13 +28,8 @@ public class WhoreUIButton : MonoBehaviour {
         if (GameController.instance.CompareClient ().Contains (whoreGen.whore) == true) {
             FitsToClient ();
         }
-    }
+        thisWhoreInfo = "Name: " + whoreGen.whore.whoreName + "\n" + "Description: " + whoreGen.whore.whoreDesc + "\n" + "Fits to client: " + whoreGen.whore.fitsToClient;
 
-    public void ShowWhoreInfo () {
-        whoreInfo = WhoreHolder.instance.whoreInfoHolder;
-        WhoreHolder.instance.activeWhore = whoreGen;
-        whoreInfo.text = "Name: " + whoreGen.whore.whoreName + "\n" + "Description: " + whoreGen.whore.whoreDesc + "\n" + "Fits to client: " + whoreGen.whore.fitsToClient;
-        GameController.instance.confirmCancelButtons.SetActive (true);
     }
 
 }

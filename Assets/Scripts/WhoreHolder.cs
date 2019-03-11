@@ -25,7 +25,6 @@ public class WhoreHolder : MonoBehaviour {
     public WhoreGenerator activeWhore;
 
     public List<GameObject> listOfWhores = new List<GameObject> ();
-    public TextMeshProUGUI whoreInfoHolder;
 
     private void Start () {
         listOfWhores.AddRange (GameObject.FindGameObjectsWithTag ("Whore"));

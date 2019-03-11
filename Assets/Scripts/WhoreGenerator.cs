@@ -18,7 +18,7 @@ public class WhoreGenerator : Interactable {
         GetComponent<CharacterMover> ().MoveToPoint (RoomBehaviour.instance.entrance.transform.position);
         client.GetComponent<CharacterMover> ().FollowTarget (this);
         ClientHolder.instance.clientClone = null;
-        //make queue in clientholder -1
+        ClientHolder.instance.clientQueue -= 1;
         //start coroutine for moving to the room entrance
         RoomBehaviour.instance.SomeoneEnteredTheRoom (gameObject, client);
 

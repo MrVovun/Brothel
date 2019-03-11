@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
@@ -19,6 +21,7 @@ public class GameController : MonoBehaviour {
 
     Camera cam;
     public GameObject confirmCancelButtons;
+    public TextMeshProUGUI infoHolder;
 
     void Start () {
         cam = Camera.main;
@@ -42,6 +45,7 @@ public class GameController : MonoBehaviour {
             Interactable interactable = hit.collider.GetComponent<Interactable> ();
             if (interactable != null) {
                 cam.GetComponent<CameraController> ().Focus (interactable.transform);
+                ShowInfo (interactable.myInfo, interactable.isGenericInfo);
             }
         }
     }
@@ -61,10 +65,16 @@ public class GameController : MonoBehaviour {
 
     public void CancelButton () {
         confirmCancelButtons.SetActive (false);
-        WhoreHolder.instance.whoreInfoHolder.text = null;
+        infoHolder.text = null;
         WhoreHolder.instance.activeWhore = null;
     }
     public void ConfirmButton () {
         WhoreHolder.instance.activeWhore.MoveClientToRoom (ClientHolder.instance.clientClone);
+    }
+    public void ShowInfo (string info, bool genericInfo) {
+        infoHolder.text = info;
+        if (genericInfo == false) {
+            confirmCancelButtons.SetActive (true);
+        }
     }
 }
