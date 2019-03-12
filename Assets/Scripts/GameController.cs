@@ -4,21 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour {
-
-    #region Singleton
-
-    public static GameController instance;
-
-    private void Awake () {
-        if (instance != null) {
-            Debug.LogWarning ("More than one instance found");
-            return;
-        }
-        instance = this;
-    }
-    #endregion
-
+public class GameController : MonoBehaviourSingleton<GameController> {
     Camera cam;
     public GameObject confirmCancelButtons;
     public TextMeshProUGUI infoHolder;
@@ -50,10 +36,10 @@ public class GameController : MonoBehaviour {
         }
     }
     void SpawnClient () {
-        ClientHolder.instance.Spawn ();
+        ClientHolder.Instance.Spawn ();
     }
     public List<Whore> CompareClient () {
-        int clientNum = ClientHolder.instance.clientClone.GetComponent<ClientGenerator> ().client.fitsToWhore;
+        int clientNum = ClientHolder.Instance.clientClone.GetComponent<ClientGenerator> ().client.fitsToWhore;
         List<Whore> fittingWhores = new List<Whore> ();
         for (int i = 0; i < WhoreHolder.instance.listOfWhores.Count; i++) {
             if (clientNum == WhoreHolder.instance.listOfWhores[i].GetComponent<WhoreGenerator> ().whore.fitsToClient) {
@@ -69,7 +55,7 @@ public class GameController : MonoBehaviour {
         WhoreHolder.instance.activeWhore = null;
     }
     public void ConfirmButton () {
-        WhoreHolder.instance.activeWhore.MoveClientToRoom (ClientHolder.instance.clientClone);
+        WhoreHolder.instance.activeWhore.MoveClientToRoom (ClientHolder.Instance.clientClone);
     }
     public void ShowInfo (string info, bool genericInfo) {
         infoHolder.text = info;

@@ -12,7 +12,7 @@ public class WhoreUIButton : MonoBehaviour {
 
     private void Awake () {
         GetComponent<Button> ().onClick.AddListener (delegate {
-            GameController.instance.ShowInfo (thisWhoreInfo, isGenericInfo);
+            GameController.Instance.ShowInfo (thisWhoreInfo, isGenericInfo);
         });
     }
 
@@ -25,7 +25,7 @@ public class WhoreUIButton : MonoBehaviour {
         whoreGen.thisWhoreButton = gameObject;
         GetComponent<Image> ().sprite = whoreGen.whore.whorePortrait;
         GetComponentInChildren<TextMeshProUGUI> ().text = whoreGen.whore.whoreName;
-        if (GameController.instance.CompareClient ().Contains (whoreGen.whore) == true) {
+        if (GameController.Instance.CompareClient ().Contains (whoreGen.whore) == true) {
             FitsToClient ();
         }
         thisWhoreInfo = "Name: " + whoreGen.whore.whoreName + "\n" + "Description: " + whoreGen.whore.whoreDesc + "\n" + "Fits to client: " + whoreGen.whore.fitsToClient;

@@ -9,7 +9,7 @@ public class ClientGenerator : Interactable {
     private void Start () {
         if (BrothelEntranceController.instance.isOccupied == false) {
             GetComponent<CharacterMover> ().MoveToPoint (BrothelEntranceController.instance.transform.position);
-            GameController.instance.CompareClient ();
+            GameController.Instance.CompareClient ();
         } else {
             //wait until isOccupied == false
         }

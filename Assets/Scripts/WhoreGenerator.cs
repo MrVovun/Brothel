@@ -7,7 +7,7 @@ public class WhoreGenerator : Interactable {
     public int stamina = 100;
 
     public void MoveWhoreToClient () {
-        GetComponent<CharacterMover> ().MoveToTarget (ClientHolder.instance.clientClone.GetComponent<ClientGenerator> ());
+        GetComponent<CharacterMover> ().MoveToTarget (ClientHolder.Instance.clientClone.GetComponent<ClientGenerator> ());
     }
 
     public void MoveWhore (Vector3 point) {
@@ -15,12 +15,12 @@ public class WhoreGenerator : Interactable {
     }
 
     public void MoveClientToRoom (GameObject client) {
-        GetComponent<CharacterMover> ().MoveToPoint (RoomBehaviour.instance.entrance.transform.position);
+        GetComponent<CharacterMover> ().MoveToPoint (RoomBehaviour.Instance.entrance.transform.position);
         client.GetComponent<CharacterMover> ().FollowTarget (this);
-        ClientHolder.instance.clientClone = null;
-        ClientHolder.instance.clientQueue -= 1;
+        ClientHolder.Instance.clientClone = null;
+        ClientHolder.Instance.clientQueue -= 1;
         //start coroutine for moving to the room entrance
-        RoomBehaviour.instance.SomeoneEnteredTheRoom (gameObject, client);
+        RoomBehaviour.Instance.SomeoneEnteredTheRoom (gameObject, client);
 
     }
 }

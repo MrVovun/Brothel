@@ -5,14 +5,14 @@ using UnityEngine;
 public class RoomBehaviour : Interactable {
     #region Singleton
 
-    public static RoomBehaviour instance;
+    public static RoomBehaviour Instance;
 
     private void Awake () {
-        if (instance != null) {
+        if (Instance != null) {
             Debug.LogWarning ("More than one instance found");
             return;
         }
-        instance = this;
+        Instance = this;
     }
     #endregion
     public GameObject entrance;
