@@ -32,15 +32,11 @@ public class ClientManager : MonoBehaviourSingleton<ClientManager> {
     public Client SpawnClient() {
         Client client = Instantiate(Prefab, SpawnPoint.position, SpawnPoint.rotation);
         Clients.Add(client);
-        StartCoroutine(animateClientArriving(client));
-        return client;
-    }
-
-    private IEnumerator animateClientArriving(Client client) {
         Walker walker = client.GetComponent<Walker>();
         walker.GoToPoint(InitialWalkDestination.position);
-        yield return new WaitUntil(delegate { return walker.HasArrived(); });
-        ClientArrived.Invoke(client);
+        walker.OnArrive(delegate {
+            ClientArrived.Invoke(client);
+        });
+        return client;
     }
-    
 }

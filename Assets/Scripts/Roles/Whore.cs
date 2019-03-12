@@ -14,6 +14,7 @@ public class Whore : Interactable {
 
     private void OnEnable() {
         walker = GetComponent<Walker>();
+        returnPoint = transform.position;
     }
 
     public void MeetNewClient(Client client) {
@@ -30,23 +31,32 @@ public class Whore : Interactable {
 
     private IEnumerator handlingClient(Client client) {
         isBusy = true;
-        returnPoint = transform.position;
-//        client.BeHandledBy(this);
         
         Room room = RoomManager.Instance.FindRoom();
-        Walker walker = GetComponent<Walker>();
-        walker.GoToPoint(room.GetBedPostition());
-        
-        yield return new WaitUntil(() => walker.HasArrived());
-        Debug.Log("Hello Darling! (couple arrived to room)");
-        yield return new WaitForSeconds(30);
-        client.Handled(this);
-        Handled(client);
+        if (room) {
+            Walker walker = GetComponent<Walker>();
+            walker.GoToPoint(room.GetBedPostition());
+            room.Occupy(this, client);
+            
+            client.DoWhore(this);
+            
+            yield return new WaitUntil(() => walker.HasArrived());
+            Debug.Log("Hello Darling! (couple arrived to room)");
+            yield return new WaitForSeconds(30);
+            client.Handled(this);
+            Handled(client);  
+        } else {
+            Debug.LogWarning("There is no free room!");
+        }
     }
 
     public void Handled(Client client) {
         isBusy = false;
-        walker.GoToPoint(returnPoint);
+        GoBack();
         handlingClientProcess = null;
+    }
+
+    public void GoBack() {
+        walker.GoToPoint(returnPoint);
     }
 }
