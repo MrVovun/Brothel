@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -6,7 +7,7 @@ public class Walker : MonoBehaviour {
     Transform target;
     NavMeshAgent agent;
 
-    private void Start() {
+    private void OnEnable() {
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -16,7 +17,13 @@ public class Walker : MonoBehaviour {
         }
     }
 
-    public void MoveToPoint(Vector3 point) {
+    public bool HasArrived() {
+        return !agent.pathPending && 
+               agent.remainingDistance <= agent.stoppingDistance &&
+               (!agent.hasPath || Math.Abs(agent.velocity.sqrMagnitude) < 0.1f);
+    }
+
+    public void GoToPoint(Vector3 point) {
         agent.SetDestination(point);
     }
 

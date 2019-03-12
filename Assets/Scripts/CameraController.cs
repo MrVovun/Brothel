@@ -9,9 +9,14 @@ public class CameraController : MonoBehaviourSingleton<CameraController> {
     [Space]
     [InfoBox("If X=5, then camera can move between -5 and 5. Same for Y")]
     public Vector2 CameraBoundaries;
-
+    
+    private Camera cam;
     private Vector3 targetPosition;
     private Vector3 currentVelocity;
+    
+    void Start() {
+        cam = Camera.main;
+    }
 
     public void Focus(Transform target) {
         targetPosition = clampIntoBoundaries(target.position);
@@ -20,6 +25,22 @@ public class CameraController : MonoBehaviourSingleton<CameraController> {
     private void LateUpdate() {
         handleInput();
         handleMovement();
+        if (Input.GetMouseButtonDown(0)) {
+            handleInteration();
+        }
+    }
+    
+    private void handleInteration() {
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100)) {
+            Interactable interactable = hit.collider.GetComponent<Interactable>();
+            if (interactable != null) {
+                CameraController.Instance.Focus(interactable.transform);
+                interactable.Interact();
+            }
+        }
     }
 
     private void handleInput() {

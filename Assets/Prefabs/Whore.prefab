@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2315029282319016155}
   - component: {fileID: 2315029282319016154}
   - component: {fileID: 2315029282319016148}
-  - component: {fileID: 6669864216412524041}
   - component: {fileID: 2315029282319016150}
+  - component: {fileID: 3921675191005302089}
   m_Layer: 10
   m_Name: Whore
   m_TagString: Whore
@@ -106,19 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a8a72799b228e49beef2e086c5dadc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6669864216412524041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2315029282319016156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd678c6dff8231743b0fbaecf530fdab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whore: {fileID: 0}
 --- !u!195 &2315029282319016150
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -141,3 +128,22 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3921675191005302089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2315029282319016156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd678c6dff8231743b0fbaecf530fdab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  myInfo: 
+  isGenericInfo: 0
+  WhoreData: {fileID: 0}
+  thisWhoreButton: {fileID: 0}
+  isOccupied: 0
+  stamina: 100

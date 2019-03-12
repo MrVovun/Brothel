@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using NaughtyAttributes;
+
 
 public class Interactable : MonoBehaviour {
     public float radius = 3f;
