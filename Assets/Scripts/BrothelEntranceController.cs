@@ -5,20 +5,23 @@ public class BrothelEntranceController : MonoBehaviour {
 
     public static BrothelEntranceController instance;
 
-    private void Awake () {
+    private void Awake() {
         if (instance != null) {
-            Debug.LogWarning ("More than one instance found");
+            Debug.LogWarning("More than one instance found");
             return;
         }
+
         instance = this;
     }
+
     #endregion
+
     public bool isOccupied = false;
     public ClientGenerator currentClient;
 
-    private void Update () {
+    private void Update() {
         if (isOccupied == true) {
-            WhoreHolder.instance.SurroundClient (currentClient);
+            WhoreHolder.instance.SurroundClient(currentClient);
         }
     }
 }

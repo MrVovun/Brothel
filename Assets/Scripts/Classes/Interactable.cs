@@ -5,10 +5,11 @@ public class Interactable : MonoBehaviour {
     public string myInfo;
     public bool isGenericInfo = false;
 
-    public virtual void Interact () {
-        Debug.Log ("Interacted with + " + transform.name);
+    public virtual void Interact() {
+        Debug.Log("Interacted with + " + transform.name);
     }
-    private void Start () {
+
+    private void Start() {
         //depending on the interactible type (room, whore, client), get and assign myInfo
     }
 }
