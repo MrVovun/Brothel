@@ -3,7 +3,7 @@ using UnityEngine;
 public class Room : MonoBehaviour {
     public Transform Bed;
 
-    private bool isOccupied;
+    public bool isOccupied;
 
     public Vector3 GetBedPostition () {
         return Bed.position;
