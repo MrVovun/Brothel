@@ -1,4 +1,5 @@
 ﻿using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
 
 public class CameraController : MonoBehaviourSingleton<CameraController> {
@@ -39,6 +40,8 @@ public class CameraController : MonoBehaviourSingleton<CameraController> {
             if (interactable != null) {
                 CameraController.Instance.Focus (interactable.transform);
                 interactable.Interact ();
+            } else if (ObjectInformationUI.Instance.GetComponent<TextMeshProUGUI> ().text != null && interactable == null) {
+                ObjectInformationUI.Instance.GetComponent<TextMeshProUGUI> ().text = null;
             }
         }
     }

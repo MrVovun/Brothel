@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Walker))]
+[RequireComponent (typeof (Walker))]
 public class Client : Interactable {
     public ClientData Personality;
     public int staminaRequired;
@@ -9,31 +9,30 @@ public class Client : Interactable {
     private bool isBusy;
     private Walker walker;
 
-    private void Start() {
-        walker = GetComponent<Walker>();
+    private void Start () {
+        walker = GetComponent<Walker> ();
     }
 
-    private void OnEnable() {
-        RandomizeStats();
+    private void OnEnable () {
+        RandomizeStats ();
     }
 
-    public bool IsBusy() {
+    public bool IsBusy () {
         return isBusy;
     }
 
-    public void DoWhore(Whore whore) {
+    public void DoWhore (Whore whore) {
         isBusy = true;
-        walker.Follow(whore);
+        walker.Follow (whore);
     }
 
-    public void RandomizeStats() {
-        Personality = Resources.Load("ScriptableObjects/Client") as ClientData;
+    public void RandomizeStats () {
         //randomize client info here
     }
 
-    public void Handled(Whore whore) {
+    public void Handled (Whore whore) {
         isBusy = false;
-        Debug.Log("Client has been handled");
-        Destroy(gameObject);
+        Debug.Log ("Client has been handled");
+        Destroy (gameObject);
     }
 }

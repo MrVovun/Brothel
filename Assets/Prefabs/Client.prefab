@@ -118,7 +118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0fdf20faf07315429468c8cc2275c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  client: {fileID: 0}
+  radius: 3
+  myInfo: 
+  Personality: {fileID: 11400000, guid: f22f2f3a3175378418f81312f52ad9be, type: 2}
+  staminaRequired: 0
 --- !u!195 &6425093048599433115
 NavMeshAgent:
   m_ObjectHideFlags: 0

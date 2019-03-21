@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Room : MonoBehaviour {
+public class Room : Interactable {
     public Transform Bed;
 
     public bool isOccupied;
