@@ -6,6 +6,11 @@ public class Whore : Interactable {
     [Space]
     public WhoreData Personality;
     public int stamina = 100;
+    public int level;
+    private int exp;
+    private int level1Cap;
+    private int level2Cap;
+    private int level3Cap;
 
     private Vector3 returnPoint;
     private Walker walker;
@@ -15,6 +20,21 @@ public class Whore : Interactable {
     private void OnEnable () {
         walker = GetComponent<Walker> ();
         returnPoint = transform.position;
+    }
+
+    private void Update () {
+        if (level == 1 && exp >= level1Cap) {
+            level = 2;
+            //chance to get random fetish
+        }
+        if (level == 2 && exp >= level2Cap) {
+            level = 3;
+            //chance to get random fetish
+        }
+        if (level == 3 && exp >= level3Cap) {
+            level = 4;
+            //chance to get random fetish
+        }
     }
 
     public void MeetNewClient (Client client) {
@@ -43,6 +63,7 @@ public class Whore : Interactable {
             yield return new WaitUntil (() => walker.HasArrived ());
             Debug.Log ("Hello Darling! (couple arrived to room)");
             yield return new WaitForSeconds (30);
+            //sex interruption here
             client.Handled (this);
             Handled (client);
             room.Unoccupy ();
@@ -53,6 +74,12 @@ public class Whore : Interactable {
 
     public void Handled (Client client) {
         isBusy = false;
+        if (level == client.level) {
+            exp += client.expForMe;
+        } else {
+            exp += client.expForMe / 2;
+            //we can change that later using whatever modifier we want
+        }
         GoBack ();
         handlingClientProcess = null;
     }

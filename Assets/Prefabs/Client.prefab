@@ -122,6 +122,7 @@ MonoBehaviour:
   myInfo: 
   Personality: {fileID: 11400000, guid: f22f2f3a3175378418f81312f52ad9be, type: 2}
   staminaRequired: 0
+  level: 2
 --- !u!195 &6425093048599433115
 NavMeshAgent:
   m_ObjectHideFlags: 0

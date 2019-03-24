@@ -31,7 +31,14 @@ public class WhoreSelectionUI : MonoBehaviour {
             button.GetComponentInChildren<TextMeshProUGUI> ().text = whore.Personality.whoreName;
             button.transform.SetParent (WhoreButtonsContainer.transform);
             button.GetComponent<Button> ().onClick.AddListener (delegate { preSelectedWhore = whore; });
-            button.GetComponent<Button> ().onClick.AddListener (delegate { ShowConfirmationUI (); });
+            if (whore.level == client.level) {
+                button.GetComponent<Button> ().onClick.AddListener (delegate { ShowConfirmationUI (); });
+            } else if (whore.level > client.level) {
+                //requires less stamina from whore
+                button.GetComponent<Button> ().onClick.AddListener (delegate { ShowConfirmationUI (); });
+            } else {
+                Debug.Log (whore.Personality.whoreName + "'s level doesn't fit");
+            }
         }
 
         gameObject.SetActive (true);

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Client : Interactable {
     public ClientData Personality;
     public int staminaRequired;
+    public int level;
+    public int expForMe;
 
     private bool isBusy;
     private Walker walker;
