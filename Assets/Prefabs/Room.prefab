@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &500755465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 500755466}
+  m_Layer: 0
+  m_Name: BedDestinationPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &500755466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500755465}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.718, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3721526231963429287}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2906672067680530063
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,8 +58,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2906672067680530063}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 2, y: 0.25, z: 0}
-  m_LocalScale: {x: 4, y: 0.5, z: 0.20000012}
+  m_LocalPosition: {x: 4.0019, y: 0, z: 0}
+  m_LocalScale: {x: 6.6422687, y: 0.8302836, z: 0.33211365}
   m_Children: []
   m_Father: {fileID: 554490769316653463}
   m_RootOrder: 1
@@ -136,8 +166,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3977425029174669526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 2}
-  m_LocalScale: {x: 5, y: 0.5, z: 0.2}
+  m_LocalPosition: {x: -0.0000059685, y: 0, z: 3.3211}
+  m_LocalScale: {x: 8.302836, y: 0.8302836, z: 0.33211344}
   m_Children: []
   m_Father: {fileID: 554490769316653463}
   m_RootOrder: 0
@@ -244,8 +274,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4678847478027776506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0.25, z: -2}
-  m_LocalScale: {x: 1.5, y: 0.5, z: 0.2}
+  m_LocalPosition: {x: 2.8893, y: 0, z: -3.3211}
+  m_LocalScale: {x: 2.4908507, y: 0.8302836, z: 0.33211344}
   m_Children: []
   m_Father: {fileID: 554490769316653463}
   m_RootOrder: 4
@@ -334,6 +364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 554490769316653463}
   - component: {fileID: 5692356282716243044}
+  - component: {fileID: 874173590}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -373,7 +404,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de34846ea0164ddb840e74e572ef7bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bed: {fileID: 3721526231963429287}
+  radius: 3
+  myInfo: 
+  Bed: {fileID: 500755466}
+  isOccupied: 0
+--- !u!65 &874173590
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806351690367505004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5166655857126404840
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +438,7 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &3721526231963429287
@@ -402,9 +449,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5166655857126404840}
   m_LocalRotation: {x: -0, y: 0.000000014901161, z: -0, w: 1}
-  m_LocalPosition: {x: 0.048, y: 0.217, z: -0.194}
-  m_LocalScale: {x: 1.2847811, y: 0.37096027, z: 0.8575546}
-  m_Children: []
+  m_LocalPosition: {x: 0.04, y: -0.248, z: 1.72}
+  m_LocalScale: {x: 2.731059, y: 0.37096027, z: 1.3514203}
+  m_Children:
+  - {fileID: 500755466}
   m_Father: {fileID: 554490769316653463}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -510,8 +558,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5214987795796546069}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 0.25, z: -2}
-  m_LocalScale: {x: 1.5, y: 0.5, z: 0.2}
+  m_LocalPosition: {x: -2.9226, y: 0, z: -3.3211}
+  m_LocalScale: {x: 2.4908507, y: 0.8302836, z: 0.33211344}
   m_Children: []
   m_Father: {fileID: 554490769316653463}
   m_RootOrder: 3
@@ -618,8 +666,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5534892776896027193}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2, y: 0.25, z: 0}
-  m_LocalScale: {x: 4, y: 0.5, z: 0.20000012}
+  m_LocalPosition: {x: -4.0019, y: 0, z: 0}
+  m_LocalScale: {x: 6.6422687, y: 0.8302836, z: 0.33211365}
   m_Children: []
   m_Father: {fileID: 554490769316653463}
   m_RootOrder: 2

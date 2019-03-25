@@ -6,5 +6,4 @@ public class ClientData : ScriptableObject {
     public string clientName;
     public int fitsToWhore;
     
-    
 }
