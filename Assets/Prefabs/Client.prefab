@@ -120,9 +120,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 3
   myInfo: 
-  Personality: {fileID: 11400000, guid: f22f2f3a3175378418f81312f52ad9be, type: 2}
+  Personality: {fileID: 0}
   staminaRequired: 0
   level: 2
+  expForMe: 0
+  amountClientWillPay: 0
 --- !u!195 &6425093048599433115
 NavMeshAgent:
   m_ObjectHideFlags: 0

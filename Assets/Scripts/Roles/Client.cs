@@ -14,9 +14,6 @@ public class Client : Interactable {
 
     private void Start () {
         walker = GetComponent<Walker> ();
-    }
-
-    private void OnEnable () {
         RandomizeStats ();
     }
 
@@ -30,7 +27,8 @@ public class Client : Interactable {
     }
 
     public void RandomizeStats () {
-        //randomize client info here
+        Personality = ScriptableObject.CreateInstance<ClientData> ();
+        ClientDataFactory.Instance.GenerateClientData (Personality);
     }
 
     public void Handled (Whore whore) {

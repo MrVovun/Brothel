@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Client
   m_EditorClassIdentifier: 
   portrait: {fileID: 0}
-  clientName: John
+  clientName: 
   fitsToWhore: 1
+  preferences: []
+  traits: []
