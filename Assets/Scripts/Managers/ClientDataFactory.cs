@@ -8,7 +8,13 @@ public class ClientDataFactory : MonoBehaviourSingleton<ClientDataFactory> {
     public List<string> preferences = new List<string> ();
     public List<string> traits = new List<string> ();
 
+    public float firstPrefChance = 0.5f;
+    public float secondPrefChance = 0.33f;
+    public float thirdPrefChance = 0.25f;
+    public float additionalTraitChance = 0.5f;
+
     public void GatherNames () {
+        //names should be gathered from some kind of library
         names.Add ("John");
         names.Add ("Jack");
         names.Add ("James");
@@ -27,18 +33,22 @@ public class ClientDataFactory : MonoBehaviourSingleton<ClientDataFactory> {
     public void GenerateClientData (ClientData client) {
         client.clientName = names[Random.Range (0, names.Count)];
         //check if this name is already occupied by saved client
-        if (Random.value >= 0.5) {
-            client.preferences.Add (preferences[Random.Range (0, preferences.Count)]);
-            if (Random.value >= 0.5) {
-                client.preferences.Add (preferences[Random.Range (0, preferences.Count)]);
+        if (Random.value >= firstPrefChance) {
+            client.clientPreferences.Add (preferences[Random.Range (0, preferences.Count)]);
+            if (Random.value >= secondPrefChance) {
+                client.clientPreferences.Add (preferences[Random.Range (0, preferences.Count)]);
                 //check if client already has that pref
-                if (Random.value >= 0.5) {
-                    client.preferences.Add (preferences[Random.Range (0, preferences.Count)]);
+                if (Random.value >= thirdPrefChance) {
+                    client.clientPreferences.Add (preferences[Random.Range (0, preferences.Count)]);
                     //check if client already has that pref
                 }
             }
         }
-        client.traits.Add (traits[Random.Range (0, traits.Count)]);
+        client.clientTraits.Add (traits[Random.Range (0, traits.Count)]);
+        if (Random.value >= additionalTraitChance) {
+            client.clientTraits.Add (traits[Random.Range (0, traits.Count)]);
+            //check if client already has that trait
+        }
     }
 
 }
