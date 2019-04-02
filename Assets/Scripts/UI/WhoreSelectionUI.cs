@@ -24,7 +24,12 @@ public class WhoreSelectionUI : MonoBehaviour {
     public void ShowSelectionUI (Client client, Whore[] whores) {
         clearButtons ();
         this.client = client;
+        WhoreManager.Instance.FindWhoresThatFit (client);
         foreach (Whore whore in whores) {
+            if (whore.fittingPreferencesForCurrentClient != 0) {
+                Debug.Log (whore.Personality.whoreName + " fits to client's preferences");
+                //mark them in ui
+            }
             GameObject button = Instantiate (WhoreButtonPrefab, Vector3.zero, Quaternion.identity);
             buttons.Add (button);
             button.GetComponent<Image> ().sprite = whore.Personality.whorePortrait;
@@ -40,7 +45,6 @@ public class WhoreSelectionUI : MonoBehaviour {
                 Debug.Log (whore.Personality.whoreName + "'s level doesn't fit");
             }
         }
-
         gameObject.SetActive (true);
     }
 

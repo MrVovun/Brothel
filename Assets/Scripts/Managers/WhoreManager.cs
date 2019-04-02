@@ -7,43 +7,46 @@ public class WhoreManager : MonoBehaviourSingleton<WhoreManager> {
 
     public WhoreSelectionUI SelectionUI;
 
-    public void MeetClient(Client client) {
-        Whore[] freeWhores = GetUnoccupiedWhores();
+    public void MeetClient (Client client) {
+        Whore[] freeWhores = GetUnoccupiedWhores ();
         foreach (Whore whore in freeWhores) {
-            whore.MeetNewClient(client);
+            whore.MeetNewClient (client);
         }
-        
-        Walker.OnAllArrive(freeWhores, delegate {
-            SelectionUI.ShowSelectionUI(client, freeWhores);
+
+        Walker.OnAllArrive (freeWhores, delegate {
+            SelectionUI.ShowSelectionUI (client, freeWhores);
         });
     }
 
-    public Whore[] GetUnoccupiedWhores() {
-        List<Whore> freeWhores = new List<Whore>();
+    public Whore[] GetUnoccupiedWhores () {
+        List<Whore> freeWhores = new List<Whore> ();
         foreach (Whore whore in Whores) {
-            if (!whore.IsBusy()) {
-                freeWhores.Add(whore);
+            if (!whore.IsBusy ()) {
+                freeWhores.Add (whore);
             }
         }
 
-        return freeWhores.ToArray();
+        return freeWhores.ToArray ();
     }
 
-    public Whore[] FindWhoreThatFits(Client client) {
-        List<Whore> whoresThatFits = new List<Whore>();
+    public void FindWhoresThatFit (Client client) {
+        List<Whore> whoresThatFits = new List<Whore> ();
         foreach (Whore whore in Whores) {
-            if (!whore.IsBusy() && whore.Personality.fitsToClient == client.Personality.fitsToWhore) {
-                whoresThatFits.Add(whore);
+            int fittingTraits = 0;
+            for (int i = 0; i < whore.Personality.whoreTraits.Count; i++) {
+                if (!whore.IsBusy () && client.Personality.clientPreferences.Contains (whore.Personality.whoreTraits[i])) {
+                    fittingTraits += 1;
+                    whoresThatFits.Add (whore);
+                }
             }
+            whore.fittingPreferencesForCurrentClient = fittingTraits;
         }
-
-        return whoresThatFits.ToArray();
     }
 
-    public void OnWhoreConfirmed(Whore whore, Client client) {
-        whore.HandleClient(client);
-        foreach (Whore w in GetUnoccupiedWhores()) {
-            w.GoBack();
+    public void OnWhoreConfirmed (Whore whore, Client client) {
+        whore.HandleClient (client);
+        foreach (Whore w in GetUnoccupiedWhores ()) {
+            w.GoBack ();
         }
     }
 }

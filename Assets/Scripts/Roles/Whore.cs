@@ -8,6 +8,7 @@ public class Whore : Interactable {
     public int stamina = 100;
     public int level;
     public int clientLevelModifier = 2;
+    public int fittingPreferencesForCurrentClient;
     private int exp;
     private int level1Cap;
     private int level2Cap;
@@ -39,6 +40,7 @@ public class Whore : Interactable {
     }
 
     public void MeetNewClient (Client client) {
+        fittingPreferencesForCurrentClient = 0;
         GetComponent<Walker> ().WalkToTarget (client);
     }
 

@@ -5,7 +5,6 @@ using UnityEngine;
 public class ClientData : ScriptableObject {
     public Sprite portrait;
     public string clientName;
-    public int fitsToWhore;
     public List<string> clientPreferences = new List<string> ();
     public List<string> clientTraits = new List<string> ();
 

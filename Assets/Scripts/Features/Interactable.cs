@@ -16,10 +16,10 @@ public class Interactable : MonoBehaviour {
     private void GetMyInfo () {
         if (gameObject.GetComponent<Whore> () != null) {
             Whore thisObject = gameObject.GetComponent<Whore> ();
-            myInfo = "Name: " + thisObject.Personality.whoreName + "\n" + "Description: " + thisObject.Personality.whoreDesc + "\n" + "Fits to client: " + thisObject.Personality.fitsToClient + "\n" + "Preferences: " + ListToText (thisObject.Personality.whorePreferences) + "\n" + "Traits: " + ListToText (thisObject.Personality.whoreTraits);
+            myInfo = "Name: " + thisObject.Personality.whoreName + "\n" + "Description: " + thisObject.Personality.whoreDesc + "\n" + "Preferences: " + ListToText (thisObject.Personality.whorePreferences) + "\n" + "Traits: " + ListToText (thisObject.Personality.whoreTraits);
         } else if (gameObject.GetComponent<Client> () != null) {
             Client thisObject = gameObject.GetComponent<Client> ();
-            myInfo = "Name: " + thisObject.Personality.clientName + "\n" + "Fits to whore: " + thisObject.Personality.fitsToWhore + "\n" + "Preferences: " + ListToText (thisObject.Personality.clientPreferences) + "\n" + "Traits: " + ListToText (thisObject.Personality.clientTraits);
+            myInfo = "Name: " + thisObject.Personality.clientName + "\n" + "Preferences: " + ListToText (thisObject.Personality.clientPreferences) + "\n" + "Traits: " + ListToText (thisObject.Personality.clientTraits);
         } else if (gameObject.GetComponent<Room> () != null) {
             Room thisObject = gameObject.GetComponent<Room> ();
             myInfo = "Name: " + this.name + "\n" + "Room is occupied: " + thisObject.isOccupied;

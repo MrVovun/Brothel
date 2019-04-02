@@ -33,17 +33,18 @@ public class ClientDataFactory : MonoBehaviourSingleton<ClientDataFactory> {
     public void GenerateClientData (ClientData client) {
         client.clientName = names[Random.Range (0, names.Count)];
         //check if this name is already occupied by saved client
-        if (Random.value >= firstPrefChance) {
-            client.clientPreferences.Add (preferences[Random.Range (0, preferences.Count)]);
-            if (Random.value >= secondPrefChance) {
-                client.clientPreferences.Add (preferences[Random.Range (0, preferences.Count)]);
-                //check if client already has that pref
-                if (Random.value >= thirdPrefChance) {
-                    client.clientPreferences.Add (preferences[Random.Range (0, preferences.Count)]);
-                    //check if client already has that pref
-                }
-            }
-        }
+        client.clientPreferences.Add (preferences[Random.Range (0, preferences.Count)]);
+        // if (Random.value >= firstPrefChance) {
+        //     client.clientPreferences.Add (preferences[Random.Range (0, preferences.Count)]);
+        //     if (Random.value >= secondPrefChance) {
+        //         client.clientPreferences.Add (preferences[Random.Range (0, preferences.Count)]);
+        //         //check if client already has that pref
+        //         if (Random.value >= thirdPrefChance) {
+        //             client.clientPreferences.Add (preferences[Random.Range (0, preferences.Count)]);
+        //             //check if client already has that pref
+        //         }
+        //     }
+        // }
         client.clientTraits.Add (traits[Random.Range (0, traits.Count)]);
         if (Random.value >= additionalTraitChance) {
             client.clientTraits.Add (traits[Random.Range (0, traits.Count)]);
