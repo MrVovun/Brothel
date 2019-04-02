@@ -7,6 +7,7 @@ public class Whore : Interactable {
     public WhoreData Personality;
     public int stamina = 100;
     public int level;
+    public int clientLevelModifier = 2;
     private int exp;
     private int level1Cap;
     private int level2Cap;
@@ -77,8 +78,7 @@ public class Whore : Interactable {
         if (level == client.level) {
             exp += client.expForMe;
         } else {
-            exp += client.expForMe / 2;
-            //we can change that later using whatever modifier we want
+            exp += client.expForMe / clientLevelModifier;
         }
         GoBack ();
         handlingClientProcess = null;
