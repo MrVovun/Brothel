@@ -34,7 +34,9 @@ public class Client : Interactable {
     public void Handled (Whore whore) {
         isBusy = false;
         Debug.Log ("Client has been handled");
-        //payment
+        GeneratePayment (whore);
+        GameManager.Instance.money += amountClientWillPay;
+        Debug.Log (GameManager.Instance.money);
         Destroy (gameObject);
     }
 
@@ -44,13 +46,12 @@ public class Client : Interactable {
         Destroy (gameObject);
     }
 
-    public int GeneratePayment (Whore whore) {
-        int reqTime = 50;
-        int needsSatisfied = 50;
-        int payPerNeed = 50;
+    public void GeneratePayment (Whore whore) {
+        int reqTime = Random.Range (10, 30);
+        staminaRequired = reqTime;
+        int payPerNeed = 20;
         int payPerFetish = 50;
-        amountClientWillPay = reqTime + payPerNeed * needsSatisfied + payPerFetish;
-        return amountClientWillPay;
+        amountClientWillPay = reqTime + payPerNeed * whore.fittingPreferencesForCurrentClient + payPerFetish;
     }
 
 }
