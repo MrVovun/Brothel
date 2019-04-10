@@ -24,12 +24,15 @@ public class WhoreSelectionUI : MonoBehaviour {
     public void ShowSelectionUI (Client client, Whore[] whores) {
         clearButtons ();
         this.client = client;
-        WhoreManager.Instance.FindWhoresThatFit (client);
+        List<Whore> listOfSelfwillWhores = ClientManager.Instance.FindWhoresThatPreferMe (client, whores);
+        List<Whore> listOfCompilanceWhores = WhoreManager.Instance.FindWhoresThatFit (client);
+        foreach (Whore whore in listOfSelfwillWhores) {
+            Debug.Log ("Client fits to " + whore.Personality.whoreName + "'s preferences");
+        }
+        foreach (Whore whore in listOfCompilanceWhores) {
+            Debug.Log (whore.Personality.whoreName + " fits to client's preferences");
+        }
         foreach (Whore whore in whores) {
-            if (whore.fittingPreferencesForCurrentClient != 0) {
-                Debug.Log (whore.Personality.whoreName + " fits to client's preferences");
-                //mark them in ui
-            }
             GameObject button = Instantiate (WhoreButtonPrefab, Vector3.zero, Quaternion.identity);
             buttons.Add (button);
             button.GetComponent<Image> ().sprite = whore.Personality.whorePortrait;
@@ -53,7 +56,12 @@ public class WhoreSelectionUI : MonoBehaviour {
     }
 
     public void OnWhoreConfirmed () {
+        if (preSelectedWhore.fittingPreferencesForCurrentClient != 0) {
+            preSelectedWhore.RaiseStat ("compilance");
+        }
+        //else if client has fitting traits for whore, raisestat selfWill
         WhoreConfirmed.Invoke (preSelectedWhore, client);
+
         resetState ();
         gameObject.SetActive (false);
     }

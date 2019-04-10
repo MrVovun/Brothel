@@ -11,6 +11,7 @@ public class Whore : Interactable {
     public int level;
     public int clientLevelModifier = 2;
     public int fittingPreferencesForCurrentClient;
+    public int fittingPreferencesOfCurrentClient;
     public int selfWill;
     public int compilance;
     public int standartStatCoeffecient;
@@ -50,6 +51,7 @@ public class Whore : Interactable {
 
     public void MeetNewClient (Client client) {
         fittingPreferencesForCurrentClient = 0;
+        fittingPreferencesOfCurrentClient = 0;
         GetComponent<Walker> ().WalkToTarget (client);
     }
 
@@ -110,5 +112,13 @@ public class Whore : Interactable {
     public void Rest () {
         //we send whore to rest and regen stamina
         //we regen slower, if her stamina is <= 0
+    }
+
+    public void RaiseStat (string stat) {
+        if (stat == "compilance") {
+            compilance += standartStatCoeffecient * fittingPreferencesForCurrentClient;
+        } else if (stat == "selfWill") {
+            selfWill += standartStatCoeffecient * fittingPreferencesOfCurrentClient;
+        }
     }
 }

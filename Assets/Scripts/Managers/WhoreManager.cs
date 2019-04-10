@@ -29,7 +29,7 @@ public class WhoreManager : MonoBehaviourSingleton<WhoreManager> {
         return freeWhores.ToArray ();
     }
 
-    public void FindWhoresThatFit (Client client) {
+    public List<Whore> FindWhoresThatFit (Client client) {
         List<Whore> whoresThatFits = new List<Whore> ();
         foreach (Whore whore in Whores) {
             int fittingTraits = 0;
@@ -41,6 +41,7 @@ public class WhoreManager : MonoBehaviourSingleton<WhoreManager> {
             }
             whore.fittingPreferencesForCurrentClient = fittingTraits;
         }
+        return whoresThatFits;
     }
 
     public void OnWhoreConfirmed (Whore whore, Client client) {
