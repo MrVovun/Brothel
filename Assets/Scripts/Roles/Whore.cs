@@ -14,7 +14,7 @@ public class Whore : Interactable {
     public int fittingPreferencesOfCurrentClient;
     public int selfWill;
     public int compilance;
-    public int standartStatCoeffecient;
+    public int standartStatCoeffecient = 10;
 
     private int exp;
     private int level1Cap;
@@ -117,8 +117,10 @@ public class Whore : Interactable {
     public void RaiseStat (string stat) {
         if (stat == "compilance") {
             compilance += standartStatCoeffecient * fittingPreferencesForCurrentClient;
+            Debug.Log ("Whore's compliance = " + compilance);
         } else if (stat == "selfWill") {
             selfWill += standartStatCoeffecient * fittingPreferencesOfCurrentClient;
+            Debug.Log ("Whore's self-will = " + selfWill);
         }
     }
 }

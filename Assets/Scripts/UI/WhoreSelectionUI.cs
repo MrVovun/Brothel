@@ -58,8 +58,9 @@ public class WhoreSelectionUI : MonoBehaviour {
     public void OnWhoreConfirmed () {
         if (preSelectedWhore.fittingPreferencesForCurrentClient != 0) {
             preSelectedWhore.RaiseStat ("compilance");
+        } else if (preSelectedWhore.fittingPreferencesOfCurrentClient != 0) {
+            preSelectedWhore.RaiseStat ("selfWill");
         }
-        //else if client has fitting traits for whore, raisestat selfWill
         WhoreConfirmed.Invoke (preSelectedWhore, client);
 
         resetState ();
