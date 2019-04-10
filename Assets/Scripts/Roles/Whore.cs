@@ -6,9 +6,15 @@ public class Whore : Interactable {
     [Space]
     public WhoreData Personality;
     public int stamina = 100;
+    public int maxStamina = 100;
+    public int staminaRaisePerLevel;
     public int level;
     public int clientLevelModifier = 2;
     public int fittingPreferencesForCurrentClient;
+    public int selfWill;
+    public int compilance;
+    public int standartStatCoeffecient;
+
     private int exp;
     private int level1Cap;
     private int level2Cap;
@@ -27,14 +33,17 @@ public class Whore : Interactable {
     private void Update () {
         if (level == 1 && exp >= level1Cap) {
             level = 2;
+            maxStamina += staminaRaisePerLevel;
             //chance to get random fetish
         }
         if (level == 2 && exp >= level2Cap) {
             level = 3;
+            maxStamina += staminaRaisePerLevel;
             //chance to get random fetish
         }
         if (level == 3 && exp >= level3Cap) {
             level = 4;
+            maxStamina += staminaRaisePerLevel;
             //chance to get random fetish
         }
     }
@@ -54,7 +63,6 @@ public class Whore : Interactable {
 
     private IEnumerator handlingClient (Client client) {
         isBusy = true;
-
         Room room = RoomManager.Instance.FindRoom ();
         if (room) {
             Walker walker = GetComponent<Walker> ();
@@ -67,6 +75,7 @@ public class Whore : Interactable {
             Debug.Log ("Hello Darling! (couple arrived to room)");
             yield return new WaitForSeconds (30);
             //sex interruption here
+            //automatically interrupt if stamina <= 0
             client.Handled (this);
             Handled (client);
             room.Unoccupy ();
@@ -82,11 +91,24 @@ public class Whore : Interactable {
         } else {
             exp += client.expForMe / clientLevelModifier;
         }
+        stamina -= client.staminaRequired;
+        if (stamina <= 0) {
+            //send whore to rest
+        }
         GoBack ();
         handlingClientProcess = null;
     }
 
     public void GoBack () {
         walker.GoToPoint (returnPoint);
+    }
+
+    public void GetFetish (string fetish) {
+        Personality.whoreFetishes.Add (fetish);
+    }
+
+    public void Rest () {
+        //we send whore to rest and regen stamina
+        //we regen slower, if her stamina is <= 0
     }
 }
