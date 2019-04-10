@@ -7,6 +7,7 @@ public class ClientDataFactory : MonoBehaviourSingleton<ClientDataFactory> {
     public List<string> names = new List<string> ();
     public List<string> preferences = new List<string> ();
     public List<string> traits = new List<string> ();
+    public List<string> fetishes = new List<string> ();
 
     public float firstPrefChance = 0.5f;
     public float secondPrefChance = 0.33f;
@@ -28,6 +29,11 @@ public class ClientDataFactory : MonoBehaviourSingleton<ClientDataFactory> {
         traits.Add ("young");
         traits.Add ("old");
         traits.Add ("virgin");
+        fetishes.Add ("BDSM");
+        fetishes.Add ("oral");
+        fetishes.Add ("anal");
+        fetishes.Add ("paizuri");
+        fetishes.Add ("foot");
     }
 
     public void GenerateClientData (ClientData client) {

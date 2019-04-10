@@ -9,5 +9,4 @@ public class WhoreData : ScriptableObject {
     public string whoreDesc;
     public List<string> whorePreferences = new List<string> ();
     public List<string> whoreTraits = new List<string> ();
-    public List<string> whoreFetishes = new List<string> ();
 }

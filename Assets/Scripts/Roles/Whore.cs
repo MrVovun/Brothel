@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof (Walker))]
@@ -15,11 +16,14 @@ public class Whore : Interactable {
     public int selfWill;
     public int compilance;
     public int standartStatCoeffecient = 10;
+    public List<string> whoreFetishes = new List<string> ();
+
+    public float fetishChance = 0.5f;
 
     private int exp;
-    private int level1Cap;
-    private int level2Cap;
-    private int level3Cap;
+    private int level1Cap = 1000;
+    private int level2Cap = 2500;
+    private int level3Cap = 5000;
 
     private Vector3 returnPoint;
     private Walker walker;
@@ -35,17 +39,17 @@ public class Whore : Interactable {
         if (level == 1 && exp >= level1Cap) {
             level = 2;
             maxStamina += staminaRaisePerLevel;
-            //chance to get random fetish
+            GetFetish ();
         }
         if (level == 2 && exp >= level2Cap) {
             level = 3;
             maxStamina += staminaRaisePerLevel;
-            //chance to get random fetish
+            GetFetish ();
         }
         if (level == 3 && exp >= level3Cap) {
             level = 4;
             maxStamina += staminaRaisePerLevel;
-            //chance to get random fetish
+            GetFetish ();
         }
     }
 
@@ -105,8 +109,10 @@ public class Whore : Interactable {
         walker.GoToPoint (returnPoint);
     }
 
-    public void GetFetish (string fetish) {
-        Personality.whoreFetishes.Add (fetish);
+    public void GetFetish () {
+        if (Random.value >= fetishChance) {
+            whoreFetishes.Add (ClientDataFactory.Instance.fetishes[Random.Range (0, ClientDataFactory.Instance.fetishes.Count)]);
+        }
     }
 
     public void Rest () {
