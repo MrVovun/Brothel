@@ -16,6 +16,7 @@ public class Whore : Interactable {
     public int selfWill;
     public int compilance;
     public int standartStatCoeffecient = 10;
+    public int stamiSpendPerFetish = 5;
     public List<string> whoreFetishes = new List<string> ();
 
     public float fetishChance = 0.5f;
@@ -64,6 +65,7 @@ public class Whore : Interactable {
     }
 
     public void HandleClient (Client client) {
+
         handlingClientProcess = StartCoroutine (handlingClient (client));
     }
 
@@ -71,6 +73,9 @@ public class Whore : Interactable {
         isBusy = true;
         Room room = RoomManager.Instance.FindRoom ();
         if (room) {
+            int reqStamina;
+
+            int staminaOnSexStart = stamina;
             Walker walker = GetComponent<Walker> ();
             walker.GoToPoint (room.GetBedPostition ());
             room.Occupy (this, client);
@@ -79,9 +84,22 @@ public class Whore : Interactable {
 
             yield return new WaitUntil (() => walker.HasArrived ());
             Debug.Log ("Hello Darling! (couple arrived to room)");
-            yield return new WaitForSeconds (30);
-            //sex interruption here
-            //automatically interrupt if stamina <= 0
+            yield return new WaitForSeconds (client.reqTime);
+            if (stamina >= maxStamina / 2) {
+                reqStamina = (client.reqTime * (client.level / level) + stamiSpendPerFetish);
+            } else if (stamina < maxStamina / 2) {
+                reqStamina = (client.reqTime * (client.level / level) / (staminaOnSexStart / 50) + stamiSpendPerFetish);
+            } else {
+                reqStamina = 0;
+                //interrupt sex and send whore to sleep
+            }
+            for (int i = 0; i < fittingPreferencesOfCurrentClient; i++) {
+                reqStamina = reqStamina / 2;
+            }
+            for (int i = 0; i < reqStamina; i++) {
+                stamina -= 1;
+            }
+            //sex interruption on click
             client.Handled (this);
             Handled (client);
             room.Unoccupy ();
@@ -96,10 +114,6 @@ public class Whore : Interactable {
             exp += client.expForMe;
         } else {
             exp += client.expForMe / clientLevelModifier;
-        }
-        stamina -= client.staminaRequired;
-        if (stamina <= 0) {
-            //send whore to rest
         }
         GoBack ();
         handlingClientProcess = null;
