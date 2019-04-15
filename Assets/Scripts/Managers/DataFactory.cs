@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClientDataFactory : MonoBehaviourSingleton<ClientDataFactory> {
+public class DataFactory : MonoBehaviourSingleton<DataFactory> {
 
     public List<string> names = new List<string> ();
     public List<string> preferences = new List<string> ();

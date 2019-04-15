@@ -125,7 +125,7 @@ public class Whore : Interactable {
 
     public void GetFetish () {
         if (Random.value >= fetishChance) {
-            whoreFetishes.Add (ClientDataFactory.Instance.fetishes[Random.Range (0, ClientDataFactory.Instance.fetishes.Count)]);
+            whoreFetishes.Add (DataFactory.Instance.fetishes[Random.Range (0, DataFactory.Instance.fetishes.Count)]);
         }
     }
 

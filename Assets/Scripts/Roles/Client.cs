@@ -31,7 +31,7 @@ public class Client : Interactable {
 
     public void RandomizeStats () {
         Personality = ScriptableObject.CreateInstance<ClientData> ();
-        ClientDataFactory.Instance.GenerateClientData (Personality);
+        DataFactory.Instance.GenerateClientData (Personality);
     }
 
     public void Handled (Whore whore) {
