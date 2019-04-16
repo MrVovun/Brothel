@@ -21,6 +21,7 @@ public class Whore : Interactable {
 
     public float fetishChance = 0.5f;
 
+    private bool isDoll = false;
     private int exp;
     private int level1Cap = 1000;
     private int level2Cap = 2500;
@@ -37,21 +38,7 @@ public class Whore : Interactable {
     }
 
     private void Update () {
-        if (level == 1 && exp >= level1Cap) {
-            level = 2;
-            maxStamina += staminaRaisePerLevel;
-            GetFetish ();
-        }
-        if (level == 2 && exp >= level2Cap) {
-            level = 3;
-            maxStamina += staminaRaisePerLevel;
-            GetFetish ();
-        }
-        if (level == 3 && exp >= level3Cap) {
-            level = 4;
-            maxStamina += staminaRaisePerLevel;
-            GetFetish ();
-        }
+
     }
 
     public void MeetNewClient (Client client) {
@@ -110,11 +97,31 @@ public class Whore : Interactable {
 
     public void Handled (Client client) {
         isBusy = false;
-        if (level == client.level) {
-            exp += client.expForMe;
+        if (isDoll == false) {
+            if (level == client.level) {
+                exp += client.expForMe;
+            } else {
+                exp += client.expForMe / clientLevelModifier;
+            }
         } else {
-            exp += client.expForMe / clientLevelModifier;
+            Debug.Log ("Dolls don't gather exp");
         }
+        if (level == 1 && exp >= level1Cap) {
+            level = 2;
+            maxStamina += staminaRaisePerLevel;
+            GetFetish ();
+        }
+        if (level == 2 && exp >= level2Cap) {
+            level = 3;
+            maxStamina += staminaRaisePerLevel;
+            GetFetish ();
+        }
+        if (level == 3 && exp >= level3Cap) {
+            level = 4;
+            maxStamina += staminaRaisePerLevel;
+            GetFetish ();
+        }
+
         GoBack ();
         handlingClientProcess = null;
     }
@@ -138,9 +145,29 @@ public class Whore : Interactable {
         if (stat == "compilance") {
             compilance += standartStatCoeffecient * fittingPreferencesForCurrentClient;
             Debug.Log ("Whore's compliance = " + compilance);
+            if (compilance >= 100) {
+                isDoll = true;
+                Personality = WhoreManager.Instance.dollTemplate;
+                stamina = 0;
+                maxStamina = 100;
+                exp = 0;
+                level = 1;
+                //start notification that says that she became a doll
+                //she shouldn't get any text segments
+                //she shouldn't get any room bonuses
+                //she couldn't use any special rooms to raise her skills
+            }
         } else if (stat == "selfWill") {
             selfWill += standartStatCoeffecient * fittingPreferencesOfCurrentClient;
             Debug.Log ("Whore's self-will = " + selfWill);
+            if (selfWill >= 100) {
+                //start text segment with girl leaving the brothel
+                //maybe add her to some kind of memorial
+                //mark her whoredata so that she wouldn't generate on that playthrough
+                Destroy (this.gameObject);
+            }
+        } else {
+            Debug.Log ("Wrong stat!");
         }
     }
 }

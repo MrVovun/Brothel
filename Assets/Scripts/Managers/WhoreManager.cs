@@ -5,6 +5,7 @@ using UnityEngine;
 public class WhoreManager : MonoBehaviourSingleton<WhoreManager> {
     List<Whore> Whores = new List<Whore> ();
 
+    public WhoreData dollTemplate;
     public WhoreSelectionUI SelectionUI;
     public int maximumWhoreListSize = 3;
 

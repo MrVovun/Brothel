@@ -220,18 +220,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6669864216412524041, guid: a506857a9ecdd4b46ad4dff99eacb9f5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a506857a9ecdd4b46ad4dff99eacb9f5, type: 3}
---- !u!114 &74564582 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3921675191005302089, guid: a506857a9ecdd4b46ad4dff99eacb9f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 74564581}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd678c6dff8231743b0fbaecf530fdab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &76448510
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,11 +477,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1fbb526bd0491ca2e09ac078ab4a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Whores:
-  - {fileID: 74564582}
-  - {fileID: 1911566608}
-  - {fileID: 907421377}
+  dollTemplate: {fileID: 11400000, guid: 92eff72ce393c6247bc0d2610345cd55, type: 2}
   SelectionUI: {fileID: 1946788957}
+  maximumWhoreListSize: 3
 --- !u!114 &176067533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,18 +1037,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6669864216412524041, guid: a506857a9ecdd4b46ad4dff99eacb9f5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a506857a9ecdd4b46ad4dff99eacb9f5, type: 3}
---- !u!114 &907421377 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3921675191005302089, guid: a506857a9ecdd4b46ad4dff99eacb9f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 907421376}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd678c6dff8231743b0fbaecf530fdab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1053264706
 GameObject:
   m_ObjectHideFlags: 0
@@ -1870,18 +1844,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6669864216412524041, guid: a506857a9ecdd4b46ad4dff99eacb9f5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a506857a9ecdd4b46ad4dff99eacb9f5, type: 3}
---- !u!114 &1911566608 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3921675191005302089, guid: a506857a9ecdd4b46ad4dff99eacb9f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1911566607}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd678c6dff8231743b0fbaecf530fdab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1916345175
 GameObject:
   m_ObjectHideFlags: 0
