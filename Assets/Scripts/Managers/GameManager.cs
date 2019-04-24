@@ -3,7 +3,7 @@
 public class GameManager : MonoBehaviourSingleton<GameManager> {
 
     public int money;
-    private bool isPaused = false;
+    public bool isPaused = false;
     private void Start () {
         DataFactory.Instance.GatherNames ();
     }
@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
             ClientManager.Instance.SpawnClient ();
         }
         if (Input.GetKeyDown (KeyCode.Q)) {
-            TextManager.Instance.Say ("Do you suck dicks?", null, true);
+            TextManager.Instance.Say ("Do you suck dicks?", null, true, null);
         }
         if (Input.GetKeyDown (KeyCode.P)) {
             if (isPaused == true) {
