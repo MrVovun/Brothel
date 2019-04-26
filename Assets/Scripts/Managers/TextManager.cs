@@ -18,11 +18,14 @@ public class TextManager : MonoBehaviourSingleton<TextManager> {
     [SerializeField]
     private GameObject textHolder;
 
+    [SerializeField]
+    private Canvas canvas;
+
     private void Start () {
         myText = textHolder.GetComponentInChildren<TextMeshProUGUI> ();
     }
 
-    public void Say (string message, Sprite speakerSprite, bool isClient, System.Action nextAction) {
+    public void Say (GameObject speaker, string message, Sprite speakerSprite, bool isClient, System.Action nextAction) {
         GameManager.Instance.isPaused = true;
         if (isClient == true) {
             speakerSprite = currentRightPic;
@@ -34,7 +37,14 @@ public class TextManager : MonoBehaviourSingleton<TextManager> {
         StartCoroutine (ShowText (nextAction));
     }
 
+    public void BubbleSpeech (GameObject speaker, string message) {
+
+    }
+
     IEnumerator ShowText (System.Action nextAction) {
+        if (nextAction == null) {
+            //nextAction = StopSpeaking ();
+        }
         myText.text = string.Empty;
         foreach (char c in fullString) {
             if (Input.GetKeyDown (KeyCode.Mouse0)) {

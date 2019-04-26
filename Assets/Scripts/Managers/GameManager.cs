@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
             ClientManager.Instance.SpawnClient ();
         }
         if (Input.GetKeyDown (KeyCode.Q)) {
-            TextManager.Instance.Say ("Do you suck dicks?", null, true, null);
+            TextManager.Instance.Say (null, "Do you suck dicks?", null, true, null);
         }
         if (Input.GetKeyDown (KeyCode.P)) {
             if (isPaused == true) {
